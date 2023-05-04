@@ -16,7 +16,7 @@ phases:
       - echo Build started on `date`
       - zip hello.zip ./index.html 
       - echo Building the Docker image...          
-      - docker build -t ca-container-registry:test .
+      - docker build -t tk-container-registry:test .
       - docker tag ca-container-registry:test $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/tk-container-registry:test
   post_build:
     commands:
