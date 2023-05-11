@@ -6,7 +6,6 @@ phases:
       nodejs: 18
     commands:
       - apt-get install -y unzip
-      - zip hello.zip ./index.html
 
   pre_build:
     commands:
@@ -16,6 +15,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
+      - zip hello.zip ./index.html
       - docker build -t tk-container-registry .
       - docker tag tk-container-registry:testblue $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/tk-container-registry:testblue
   post_build:
