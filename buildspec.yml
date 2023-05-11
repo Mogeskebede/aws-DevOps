@@ -10,19 +10,19 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - $(aws ecr get-login --region $AWS_REGION)
+      - $(aws ecr get-login --region us-east-1)
   build:
     commands:
       - echo Build started on `date`
       - zip hello.zip ./index.html 
       - echo Building the Docker image...          
       - docker build -t tk-container-registry:test .
-      - docker tag ca-container-registry:test $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/tk-container-registry:test
+      - docker tag ca-container-registry:test $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/tk-container-registry:test
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/tk-container-registry:test
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$us-east-1.amazonaws.com/tk-container-registry:test
    
 artifacts:
   type: 
