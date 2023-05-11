@@ -14,15 +14,15 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - zip hello.zip ./index.html 
-      - echo Building the Docker image...          
-      - docker build -t tk-container-registry:test .
-      - docker tag ca-container-registry:test $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/tk-container-registry:test
+      - zip hello.zip ./index.html
+      - echo Building the Docker image...
+      - docker build -t tk-container-registry:testblue .
+      - docker tag tk-container-registry:testblue $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/ca-container-registry:testblue
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$us-east-1.amazonaws.com/tk-container-registry:test
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/ca-container-registry:testblue
    
 artifacts:
   type: 
